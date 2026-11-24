@@ -5,13 +5,15 @@
 We prove the identity recorded in Paul D. Hanna's OEIS A293380 (October 7, 2017, revision 21, COMMENTS line 6) and posed as 'Conjecture' by Peter Bala in A292179 (March 2, 2025, revision 20, COMMENTS line 8): the bilateral series sum over nonzero integers n of (x-a^n)^n/n equals -Log(1-x) for |x|<1 and 0<|a|<1. The proof applies to complex parameters and the principal logarithm. A binomial expansion gives an absolutely summable triangular array whose columns cancel the negative-index terms. Both tails converge absolutely; their regular forms also give the unique continuous extension at a=0. Corollaries establish three pairs of complementary constants and the convergence of Hanna's iteration for a related zero. The same cancellation gives conditional two-tail and symmetric sums for |x|=1, x!=1, and 0<|a|<1.
 
 - PDF: [frozen public file](paper.pdf)
+- DOI: [https://doi.org/10.5281/zenodo.24487480](https://doi.org/10.5281/zenodo.24487480)
+- Concept DOI: [https://doi.org/10.5281/zenodo.24487479](https://doi.org/10.5281/zenodo.24487479)
 - License: CC-BY-4.0
 - Version: 3
 - Mathesis record: [bala-a292179-a292178-bilateral-logarithm](https://mathesis-omega-research.apps.chrono-ai.fun/papers/bala-a292179-a292178-bilateral-logarithm?version=3)
 
 ## How to cite
 
-Haobo Ma, Wenlin Zhang (2026). Proof of Bala's bilateral logarithm conjecture and Hanna's constant identities. Mathesis, version 3. https://mathesis-omega-research.apps.chrono-ai.fun/papers/bala-a292179-a292178-bilateral-logarithm?version=3
+Haobo Ma, Wenlin Zhang (2026). Proof of Bala's bilateral logarithm conjecture and Hanna's constant identities. Mathesis, version 3. https://doi.org/10.5281/zenodo.24487480
 
 ## Statement progress
 
