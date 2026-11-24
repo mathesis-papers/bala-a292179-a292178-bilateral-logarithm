@@ -1,0 +1,391 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\DeclareMathOperator{\Log}{Log}
+\title{Proof of Bala's bilateral logarithm conjecture\newline
+and Hanna's constant identities}
+\author{Haobo Ma\\\small ChronoAI Pte Ltd, Singapore
+\and Wenlin Zhang\\\small National University of Singapore\\
+\small ChronoAI Pte Ltd, Singapore}
+\date{November 17, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove the identity recorded in Paul D.\ Hanna's OEIS A293380
+(October 7, 2017, revision 21, COMMENTS line 6) and posed as
+``Conjecture'' by Peter Bala in A292179
+(March 2, 2025, revision 20, COMMENTS line 8): the bilateral series
+$\sum_{n\in\mathbb Z\setminus\{0\}}(x-a^n)^n/n$ equals
+$-\Log(1-x)$ for $|x|<1$ and $0<|a|<1$.
+The proof applies to complex parameters and the principal logarithm.
+A binomial expansion gives an absolutely summable triangular array whose
+columns cancel the negative-index terms. Both tails converge absolutely;
+their regular forms also give the unique continuous extension at $a=0$.
+Corollaries establish three pairs of complementary constants and the
+convergence of Hanna's iteration for a related zero.
+The same cancellation gives conditional two-tail and symmetric sums for
+$|x|=1$, $x\ne1$, and $0<|a|<1$.
+\end{abstract}
+
+\section{The identity and its domain}
+The two-parameter identity occurs in Hanna's A293380 in October 2017
+\cite{hanna380}, before Bala's tentative 2024 comment in A292178 and
+explicit 2025 conjecture in A292179 \cite{bala178,bala179}.
+We prove it on the separate complex unit disks. It explains the diagonal
+identity and three pairs of constants in Hanna's entries whose sums are
+$\log2$, $\log2$ and $\log3$ \cite{bala178,bala179,hanna12,hanna34}.
+The proof uses the classical logarithm and binomial series
+\cite[\S4.6, equations (4.6.1) and (4.6.7)]{dlmf}.
+Its essential convergence step is a geometric bound on the rows of a
+triangular array; no restriction such as $|x|+|a|<1$ is needed.
+Bala's 2024 wording is ``More generally, it appears that''; the 2025
+entry explicitly labels the identity ``Conjecture.'' Both display
+$|a|<1$. We distinguish its ordinary domain $a\ne0$ from its continuous
+extension at zero.
+
+Write $\mathbb D=\{z\in\mathbb C:|z|<1\}$. For $x,a\in\mathbb D$
+and an integer $m\geq1$, define
+\begin{equation}\label{eq:tails}
+ p_m(x,a)=\frac{(x-a^m)^m}{m},\qquad
+ q_m(x,a)=\frac{(-1)^{m+1}a^{m^2}}{m(1-xa^m)^m}.
+\end{equation}
+The denominators in $q_m$ are nonzero because $|xa^m|<1$.
+These expressions are defined at $a=0$, where $p_m(x,0)=x^m/m$
+and $q_m(x,0)=0$. The original bilateral expression, in contrast,
+requires $a\ne0$ because of its negative powers.
+
+\begin{theorem}\label{thm:main}
+For every $x,a\in\mathbb D$, both series in
+\begin{equation}\label{eq:regular}
+ F(x,a)=\sum_{m\geq1}p_m(x,a)+\sum_{m\geq1}q_m(x,a)
+       =-\Log(1-x)
+\end{equation}
+converge absolutely, locally uniformly on $\mathbb D^2$.
+For $a\ne0$, every term of the bilateral series is defined, and
+\begin{equation}\label{eq:bilateral}
+ \sum_{n\in\mathbb Z\setminus\{0\}}\frac{(x-a^n)^n}{n}
+ =\lim_{N\to\infty}\sum_{m=1}^N
+ \left(\frac{(x-a^m)^m}{m}+\frac{(x-a^{-m})^{-m}}{-m}\right)
+ =-\Log(1-x).
+\end{equation}
+The integer-indexed sum is absolutely convergent, so its value is
+independent of the order of summation.
+\end{theorem}
+
+\begin{proof}
+Fix bounds $|x|\leq r<1$ and $|a|\leq t<1$, with $r,t\geq0$.
+Choose $r<\rho<1$. For all sufficiently large $m$, $t^m\leq\rho-r$,
+so
+\begin{equation}\label{eq:majorant}
+ \frac{(r+t^m)^m}{m}\leq\frac{\rho^m}{m}.
+\end{equation}
+In particular, $\sum p_m$ is absolutely and uniformly convergent
+under these bounds.
+
+For integers $m\geq1$ and $1\leq j\leq m$, put
+\[
+ c_{m,j}=\frac{(-1)^j}{m}\binom mj a^{mj}x^{m-j}.
+\]
+All powers here have nonnegative integer exponents; a zeroth power is one.
+The finite binomial theorem gives
+\begin{equation}\label{eq:row}
+ p_m-\frac{x^m}{m}=\sum_{j=1}^m c_{m,j},\qquad
+ \sum_{j=1}^m|c_{m,j}|
+ \leq\frac{(r+t^m)^m}{m}.
+\end{equation}
+Equation~\eqref{eq:majorant}, together with the finitely many earlier
+rows, proves $\sum_{m\geq1}\sum_{j=1}^m|c_{m,j}|<\infty$.
+Thus the order of summation can be changed.
+
+For a fixed $j\geq1$, use
+$\binom mj/m=\binom{m-1}{j-1}/j$ and write $m=j+\ell$ to obtain
+\begin{align*}
+ \sum_{m=j}^\infty c_{m,j}
+ &=\frac{(-1)^j a^{j^2}}{j}
+   \sum_{\ell=0}^\infty\binom{j+\ell-1}{j-1}(xa^j)^\ell\\
+ &=\frac{(-1)^j a^{j^2}}{j(1-xa^j)^j}
+ =-q_j.
+\end{align*}
+The middle equality is the negative-binomial series, valid since
+$|xa^j|<1$. In particular,
+$\sum_j|q_j|\leq\sum_m\sum_{j=1}^m|c_{m,j}|<\infty$.
+Summing~\eqref{eq:row} by columns now yields
+\[
+ \sum_{m\geq1}p_m+\sum_{j\geq1}q_j
+ =\sum_{m\geq1}\frac{x^m}{m}=-\Log(1-x).
+\]
+Here $\operatorname{Re}(1-x)\geq1-|x|>0$, so the logarithm is on its
+principal branch.
+
+For completeness, the negative tail also converges locally uniformly.
+For sufficiently large $m$, the quantity
+$t^m/(1-rt^m)$ is at most a fixed $\eta<1$. Then
+\[
+ |q_m(x,a)|\leq\frac1m
+ \left(\frac{t^m}{1-rt^m}\right)^m\leq\frac{\eta^m}{m}.
+\]
+Both estimates are uniform on each closed sub-bidisk, proving the stated
+local uniform convergence.
+
+If $a\ne0$, then $a^n\ne0$ for every integer $n$. For $m\geq1$,
+$|a^{-m}|>1>|x|$, so $x-a^{-m}\ne0$, and ordinary algebra gives
+\[
+ \frac{(x-a^{-m})^{-m}}{-m}
+ =\frac{(-1)^{m+1}a^{m^2}}{m(1-xa^m)^m}=q_m.
+\]
+The positive-index term is $p_m$. Absolute convergence of both tails
+therefore proves all assertions in~\eqref{eq:bilateral}.
+\end{proof}
+
+\begin{corollary}\label{cor:extension}
+For fixed $x\in\mathbb D$, $F(x,0)=-\Log(1-x)$ is the unique value
+at zero making the bilateral sum continuous as a function of $a$ on
+$\mathbb D$. For real $x,a$ with $|x|<1$ and $0<|a|<1$, the original
+real series converges absolutely to $-\log(1-x)$, including negative
+values of either parameter.
+\end{corollary}
+\begin{proof}
+The regular sum in~\eqref{eq:regular} is constant in $a$, hence continuous.
+Any extension agreeing with it on $\mathbb D\setminus\{0\}$ and continuous
+at zero must take its limit there. In the real case all terms are real
+and $1-x>0$, so the principal logarithm is the real logarithm.
+\end{proof}
+
+\section{Diagonal identity and paired constants}
+Write $P(x,a)=\sum_{m\geq1}p_m(x,a)$ and
+$Q(x,a)=\sum_{m\geq1}q_m(x,a)$, so $F=P+Q$ on $\mathbb D^2$.
+Define the two OEIS constants
+\[
+ C_+=\sum_{m\geq1}\frac{(2^{m-1}-1)^m}{m\,2^{m^2}},\qquad
+ C_-=\sum_{m\geq1}\frac{(-1)^{m+1}2^m}{m(2^{m+1}-1)^m}.
+\]
+\begin{corollary}\label{cor:constants}
+For $0<|x|<1$, the diagonal series
+$\sum_{n\in\mathbb Z\setminus\{0\}}(x-x^n)^n/n$ converges absolutely
+to $-\Log(1-x)$. Moreover,
+\[
+ C_++C_-=\log2,\qquad
+ C_-=\sum_{m\geq1}\frac{-1}{m(1/2-2^m)^m},\qquad
+ C_+=\sum_{m\geq1}\frac{(1/2-2^{-m})^m}{m}.
+\]
+The constants A293381 and A293382 are respectively
+$P(1/2,1/3)$ and $Q(1/2,1/3)$, and their sum is $\log2$.
+The constants A293383 and A293384 are respectively
+$P(2/3,1/2)$ and $Q(2/3,1/2)$, and their sum is $\log3$.
+\end{corollary}
+\begin{proof}
+Substitute $a=x\ne0$ in Theorem~\ref{thm:main} for the diagonal formula,
+then $x=a=1/2$ for the constant relation. Simplifying
+$p_m(1/2,1/2)$ gives the defining summand of $C_+$, and simplifying
+$q_m(1/2,1/2)$ gives that of $C_-$. The negative-index correspondence
+in the proof of Theorem~\ref{thm:main} gives the second formula above.
+For the off-diagonal pairs, direct simplification gives
+\begin{align*}
+ p_m(1/2,1/3)&=\frac{(3^m-2)^m}{m2^m3^{m^2}},&
+ q_m(1/2,1/3)&=\frac{(-1)^{m+1}2^m}{m(2\cdot3^m-1)^m},\\
+ p_m(2/3,1/2)&=\frac{(2^{m+1}-3)^m}{m3^m2^{m^2}},&
+ q_m(2/3,1/2)&=\frac{(-1)^{m+1}3^m}{m2^m(3\cdot2^{m-1}-1)^m}.
+\end{align*}
+These are the summands in \cite{hanna12,hanna34}; Theorem~\ref{thm:main}
+then gives both complementary evaluations.
+\end{proof}
+Thus all four constant formulas, the two defining series, and the
+displayed term expansions in the two entries follow. Rational enclosures
+give $C_+=0.066511041770508969698008\ldots$ and
+$C_-=0.626636138789436339719224\ldots$.
+
+\section{Hanna's zero and iteration}
+The constant in A293380 is specified by $P(1/2,r)=0$ and an iteration
+\cite[FORMULA and EXAMPLE]{hanna380}. The zero and the two logarithm
+identities in that entry have the following precise interpretation.
+
+\begin{corollary}\label{cor:root}
+There is exactly one $r\in I=[1/2,3/5]$ with $P(1/2,r)=0$, and
+\[
+ 0.5471802439661624<r<0.5471802439661625,\qquad
+ Q(1/2,r)=\sum_{m\geq1}\frac{-(-2)^m r^{m^2}}{m(2-r^m)^m}=\log2.
+\]
+The bilateral series at $(x,a)=(1/2,r)$ also equals $\log2$.
+Starting at $r_0=1/2$, both iterations
+\[
+ r_{k+1}=T(r_k),\qquad r_{k+1}=\frac{r_k+T(r_k)}2,\qquad
+ T(a)=\frac12+\sum_{m\geq2}\frac{(1/2-a^m)^m}{m}
+\]
+converge to $r$.
+\end{corollary}
+\begin{proof}
+On $I$, all terms in $T-1/2$ are nonnegative and
+\[
+ \frac12\leq T(a)\leq\frac12+\frac1{32}+\frac9{512}
+             +\sum_{m\geq4}\frac{2^{-m}}4
+ =\frac{297}{512}<\frac35.
+\]
+The derivative series converges uniformly, since its absolute terms
+are bounded by $m(3/10)^{m-1}$. Separating its $m=2$ term improves the bound to
+\[
+ 0\leq-T'(a)=\sum_{m\geq2}ma^{m-1}(1/2-a^m)^{m-1}
+ \leq\frac3{10}+\sum_{m\geq3}m(3/10)^{m-1}
+ =\frac{363}{490}<1.
+\]
+Thus $T$ maps $I$ into itself and is a contraction. Successive
+differences decrease geometrically, so its iterates are Cauchy;
+continuity gives a fixed point, and the contraction bound gives
+uniqueness. The averaged map also maps $I$ into itself and has
+derivative between $0$ and $1/2$, giving the same limit.
+Since $T(a)-a=P(1/2,a)$, this is the required zero.
+For either rational endpoint $b$ in the displayed interval, summing
+through $m=80$ gives the exact enclosure
+\[
+ \sum_{m=1}^{80}p_m(1/2,b)\leq P(1/2,b)
+ \leq\sum_{m=1}^{80}p_m(1/2,b)+\frac{2^{-80}}{81}.
+\]
+The accompanying rational calculation makes the lower endpoint's
+lower bound positive and the upper endpoint's upper bound negative.
+Finally Theorem~\ref{thm:main} gives $Q(1/2,r)=\log2$ and the
+bilateral value; simplifying $q_m(1/2,r)$ gives the displayed series.
+\end{proof}
+Uniqueness is asserted on $I$, not on the entire parameter disk.
+
+\section{Boundary values}
+The following extension is not posed in the two entries. It describes
+the change from absolute to conditional convergence at the $x$ boundary.
+
+\begin{corollary}\label{cor:boundary}
+Let $|x|=1$, $x\ne1$, and $0<|a|<1$. The positive-index series
+converges conditionally, the negative-index series converges absolutely,
+and their two-tail and symmetric sums equal $-\Log(1-x)$.
+The integer-indexed family is not absolutely summable. At $x=1$ the
+positive tail and symmetric sums diverge; for $|x|>1$ the positive-index
+terms do not tend to zero. Throughout these assertions $0<|a|<1$.
+\end{corollary}
+\begin{proof}
+Fix $0\leq t<1$ and let $M_t=\sup_{m\geq1}mt^m<\infty$
+(since $mt^m\to0$).
+For $|x|\leq1$ and $|a|\leq t$, the coefficients from
+\eqref{eq:row} satisfy the stronger estimate
+\begin{equation}\label{eq:boundary-bound}
+ \sum_{j=1}^m|c_{m,j}|
+ \leq\frac{(1+t^m)^m-1}{m}
+ \leq t^m(1+t^m)^{m-1}
+ \leq e^{M_t}t^m.
+\end{equation}
+The middle inequality follows by integrating the derivative of
+$(1+u)^m$ from $0$ to $t^m$, and the last uses $1+u\leq e^u$.
+Hence the correction series $\sum_m(p_m-x^m/m)$ is absolutely
+convergent even on $|x|=1$. Its column sums are still $-q_j$, since
+$|xa^j|<1$; joint absolute summability justifies their interchange and
+also proves $\sum_j|q_j|<\infty$.
+
+For $|x|=1$, $x\ne1$, the logarithm series converges to
+$-\Log(1-x)$ by \cite[\S4.6, equation (4.6.1), with $z=-x$]{dlmf}.
+The correction therefore cancels $\sum q_m$.
+The same negative-index algebra proves the two-tail and symmetric
+identities. Estimate~\eqref{eq:boundary-bound} implies
+$m|p_m|\to1$ on $|x|=1$, so the positive tail is not absolutely
+summable. At $x=1$ it is the harmonic series plus an absolutely
+convergent correction, whereas $\sum q_m$ remains absolutely convergent.
+Finally, if $|x|>1$, then
+$|p_m|^{1/m}=|x-a^m|/m^{1/m}\to|x|>1$.
+\end{proof}
+In particular, $x=-1$ gives the conditional value $-\log2$ for every
+$0<|a|<1$. No unordered-sum identity is asserted at the boundary.
+
+\section{Source coverage and verification}
+\begin{center}\small
+\begin{tabular}{@{}p{.45\linewidth}p{.48\linewidth}@{}}
+\toprule
+Source statement & Coverage\\\midrule
+A293380 rev.\ 21, COMMENTS line 6 (general identity, October 2017)
+ & Proved for $|x|<1$, $0<|a|<1$ by Theorem~\ref{thm:main}.\\[3pt]
+A292178 rev.\ 27, COMMENTS line 8 (``it appears''); A292179 rev.\ 20,
+COMMENTS line 8 (``Conjecture'')
+ & Proved on $a\ne0$ by Theorem~\ref{thm:main}; the value at zero is
+the continuous extension in Corollary~\ref{cor:extension}.\\[3pt]
+Both fixed entries, COMMENTS lines 6--7 (diagonal and complement)
+ & Proved by Corollary~\ref{cor:constants} on $0<|x|<1$ and at $x=1/2$.\\[3pt]
+Both fixed entries, NAME line 5, FORMULA lines 10--11 and EXAMPLE
+term expansions, lines 13--15
+ & Proved by Corollary~\ref{cor:constants} and the displayed summand
+simplifications.\\[3pt]
+Both fixed entries, digits and EXAMPLE line 12; linked 501-digit tables
+ & First 60 decimal places certified by rational enclosures;
+remaining digits not covered.\\[3pt]
+A293381--A293384, COMMENTS lines 6--7 and FORMULA lines 8--9
+ & Proved by Corollary~\ref{cor:constants}; first 60 decimal places
+certified by rational enclosures.\\[3pt]
+A293380, zero definition, logarithm formulas and iteration blocks
+ & Proved on $I$ by Corollary~\ref{cor:root}; the decimal enclosure
+certifies 16 places. Further digits and binary data are not covered.\\[3pt]
+Boundary $|x|=1$, $x\ne1$; obstruction at $x=1$ or $|x|>1$
+ & Not posed; proved by Corollary~\ref{cor:boundary}.\\\bottomrule
+\end{tabular}
+\end{center}
+The fixed source texts linked in the references identify the line numbers.
+The original two entries cross-reference each other. The four additional
+constant entries also link the ordinary constants $\log2$ (A002162)
+and $\log3$ (A002391); unrelated representations in those entries are
+not covered. The boundary behavior when $|a|=1$ is not covered here.
+
+In the pinned \href{https://github.com/the-omega-institute/trureturing/blob/4a7117cee792c7d5598d7f4770577d557fb45137/D5/S3/Analytic/PowerSeries/BalaBilateralLog.lean#L368}{Lean source},
+the declaration \texttt{BalaBilateralLog.full\_event} proves absolute convergence of the
+regular tails, their principal-log value, all nonzero-integer term
+correspondences and sums, the real specialization, and continuity and
+uniqueness at zero. Its namespace is \texttt{D5.S3.Analytic.PowerSeries}.
+Its natural index $k$ corresponds to $m=k+1$ in
+\eqref{eq:tails}. Local uniform convergence in
+Theorem~\ref{thm:main}, Hanna's zero and iterations in
+Corollary~\ref{cor:root}, and every boundary assertion of
+Corollary~\ref{cor:boundary} are established by written proofs and the
+stated rational enclosure, rather than by this declaration.
+Corollary~\ref{cor:constants} is a written specialization of the open-disk identity.
+
+The source package contains \texttt{verify.py} and its expected
+\texttt{checks.json}. They give exact finite binomial and negative-index
+checks, and rational enclosures of the paired constants and $\log2$.
+The infinite identities follow from the proof; the finite calculations
+support the algebra and decimal illustrations. The package README gives
+the build and computation commands.
+
+\begin{thebibliography}{9}
+\bibitem{hanna380}
+P.~D.~Hanna, \emph{OEIS} A293380, revision 21, October 7, 2017,
+COMMENTS line 6 and FORMULA/EXAMPLE blocks.
+\href{https://github.com/oeis/oeisdata/blob/3b4af0e758dc686db8f67f25863f4c9eb1a8f842/seq/A293/A293380.seq#L6}{Fixed source text}.
+\bibitem{hanna12}
+P.~D.~Hanna, \emph{OEIS} A293381 and A293382, October 12--13, 2017;
+revisions 21 and 20, October 14, 2017, COMMENTS lines 6--7.
+Fixed sources:
+\href{https://github.com/oeis/oeisdata/blob/3b4af0e758dc686db8f67f25863f4c9eb1a8f842/seq/A293/A293381.seq#L6}{A293381},
+\href{https://github.com/oeis/oeisdata/blob/3b4af0e758dc686db8f67f25863f4c9eb1a8f842/seq/A293/A293382.seq#L6}{A293382}.
+\bibitem{hanna34}
+P.~D.~Hanna, \emph{OEIS} A293383 and A293384, October 13, 2017;
+revisions 6 and 11, October 14, 2017, COMMENTS lines 6--7.
+Fixed sources:
+\href{https://github.com/oeis/oeisdata/blob/3b4af0e758dc686db8f67f25863f4c9eb1a8f842/seq/A293/A293383.seq#L6}{A293383},
+\href{https://github.com/oeis/oeisdata/blob/3b4af0e758dc686db8f67f25863f4c9eb1a8f842/seq/A293/A293384.seq#L6}{A293384}.
+\bibitem{bala178}
+P.~Bala, comment of November 3, 2024 in
+\emph{The On-Line Encyclopedia of Integer Sequences}, A292178,
+revision 27. Entry by P.~D.~Hanna (2017).
+\href{https://oeis.org/A292178}{oeis.org/A292178}.
+\href{https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A292/A292178.seq#L8}{Fixed source text}.
+\bibitem{bala179}
+P.~Bala, conjecture of March 2, 2025 in
+\emph{The On-Line Encyclopedia of Integer Sequences}, A292179,
+revision 20. Entry by P.~D.~Hanna (2017).
+\href{https://oeis.org/A292179}{oeis.org/A292179}.
+\href{https://github.com/oeis/oeisdata/blob/733c77ba475e0b6fa0b8abe7681ef040217ae7f7/seq/A292/A292179.seq#L8}{Fixed source text}.
+\bibitem{dlmf}
+\emph{NIST Digital Library of Mathematical Functions},
+\S4.6, Power Series (logarithm and generalized binomial series).
+\href{https://dlmf.nist.gov/4.6}{dlmf.nist.gov/4.6}.
+\end{thebibliography}
+\noindent\small\copyright\ 2026 Haobo Ma and Wenlin Zhang.
+Licensed under Creative Commons Attribution 4.0 International
+(CC BY 4.0).
+\end{document}

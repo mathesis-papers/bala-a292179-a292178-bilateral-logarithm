@@ -1,0 +1,15 @@
+{
+  "id": "bala-a292179-a292178-bilateral-logarithm",
+  "revision": 3,
+  "problem_ids": ["bala-a292179-a292178-bilateral-logarithm"],
+  "topic": "Peter Bala's two-parameter bilateral logarithm conjecture",
+  "title": "Proof of Bala's bilateral logarithm conjecture and Hanna's constant identities",
+  "creators": [
+    {"name": "Haobo Ma", "affiliation": "ChronoAI Pte Ltd, Singapore"},
+    {"name": "Wenlin Zhang", "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore"}
+  ],
+  "abstract": "We prove the identity recorded in Paul D. Hanna's OEIS A293380 (October 7, 2017, revision 21, COMMENTS line 6) and posed as 'Conjecture' by Peter Bala in A292179 (March 2, 2025, revision 20, COMMENTS line 8): the bilateral series sum over nonzero integers n of (x-a^n)^n/n equals -Log(1-x) for |x|<1 and 0<|a|<1. The proof applies to complex parameters and the principal logarithm. A binomial expansion gives an absolutely summable triangular array whose columns cancel the negative-index terms. Both tails converge absolutely; their regular forms also give the unique continuous extension at a=0. Corollaries establish three pairs of complementary constants and the convergence of Hanna's iteration for a related zero. The same cancellation gives conditional two-tail and symmetric sums for |x|=1, x!=1, and 0<|a|<1.",
+  "summary": "A binomial-array proof on the separate complex unit disks, its real and diagonal specializations, and the unique continuous extension at a=0. Written corollaries prove the complementary formulas in OEIS A292178--A292179 and A293381--A293384, the existence and uniqueness of Hanna's zero in [1/2,3/5], convergence of both associated iterations, and conditional boundary sums for |x|=1 except x=1. The pinned Lean declaration covers the open-disk identity and zero extension. Local uniform convergence, the zero and iterations, and boundary behavior have written proofs; exact finite calculations certify six constants to 60 decimal places and bracket the zero to 16 places.",
+  "license": "cc-by-4.0",
+  "evidence_url": "https://github.com/the-omega-institute/trureturing/blob/4a7117cee792c7d5598d7f4770577d557fb45137/D5/S3/Analytic/PowerSeries/BalaBilateralLog.lean#L368"
+}
