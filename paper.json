@@ -31,6 +31,7 @@
     "concept_doi": "10.5281/zenodo.24487479",
     "current_version": 3,
     "doi": "10.5281/zenodo.24487480",
+    "kind": "note",
     "lean_source": {
       "revision": "4a7117cee792c7d5598d7f4770577d557fb45137",
       "url": "https://github.com/the-omega-institute/trureturing/blob/4a7117cee792c7d5598d7f4770577d557fb45137/D5/S3/Analytic/PowerSeries/BalaBilateralLog.lean#L368"
@@ -55,10 +56,12 @@
     "title": "Proof of Bala's bilateral logarithm conjecture and Hanna's constant identities",
     "versions": [
       {
+        "changelog": null,
         "previous_version": null,
         "published_on": "2026-11-24T01:58:41.541625619Z",
         "revision": "3",
-        "version": 3
+        "version": 3,
+        "version_label": null
       }
     ],
     "work": "bala-a292179-a292178-bilateral-logarithm"
